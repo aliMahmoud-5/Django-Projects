@@ -1,0 +1,32 @@
+﻿{%extends 'core/base.html'%}
+
+
+{%block content%}
+<div class="container">
+    {%for item in items%}
+    <div class="item-cont">
+
+
+        <a href="{%url 'item:detail' item.id%}"><img src="{{item.img.url}}" alt="{{item.name}}" /></a>
+
+        <div class="item-txt">
+            <h3>{{item.name.title}}</h3>
+            <p>{{item.price}}$</p>
+        </div>
+
+    </div>
+    {%endfor%}
+
+</div>
+
+{%for categ in category%}
+
+<a href="{%url 'item:browse'%}?=query={{query}}&category={{categ.id}}">{{categ.name.title}}</a>
+
+{%endfor%}
+
+<form action="{% url 'item:browse' %}" method="GET">
+    <input type="text" name="query" value="{{query}}" />
+    <button>Search</button>
+</form>
+{%endblock%}

@@ -1,0 +1,45 @@
+﻿{%extends 'core/base.html'%}
+
+
+
+{%block content%}
+
+
+<div class="add-item" >
+    <a href="{%url 'item:add-item'%}">Add Item</a>
+</div>
+
+
+
+
+<div class="container">
+    {%for item in items%}
+    <div class="item-cont">
+
+
+        <a href="{%url 'item:detail' item.id%}"><img src="{{item.img.url}}" alt="{{item.name}}" /></a>
+
+        <div class="item-txt">
+            <h3>{{item.name}}</h3>
+            <p>{{item.price}}$</p>
+        </div>
+
+
+    </div>
+
+    {%endfor%}
+    
+
+</div>
+<div>
+    <div>
+        {%for categ in category%}
+
+        <a href="#">{{categ.name}}</a>
+
+        {%endfor%}
+    </div>
+</div>
+
+
+{%endblock%}
