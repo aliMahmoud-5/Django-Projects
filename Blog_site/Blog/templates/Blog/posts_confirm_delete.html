@@ -1,0 +1,19 @@
+﻿{%extends 'blog/base.html'%}
+
+
+{% block content%}
+<div class="container">
+    <h1>Create New Post</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        
+        <p>are you sure you want to delele this post</p>
+        <button type="submit">Yes, Delete</button>
+        <a href="{% url 'post-detail' object.id%}">Cancel</a>
+
+    </form>
+</div>
+
+
+{%endblock%}

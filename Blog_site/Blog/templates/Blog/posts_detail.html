@@ -1,0 +1,24 @@
+﻿{% extends 'Blog/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    
+    <div class="post-cont">
+        <div class="post-head">
+            <img src="{{ object.auth.profile.pic.url }}" alt="Alternate Text" />
+            <h1 style="margin:0"> {{ object.title}} </h1>
+
+        </div>
+        <div style="margin-left:85px">
+            <p style="display:inline"> by <p style="color: #9B59B6; display: inline">{{object.auth}}</p> on {{post.date | date:"F d, Y"}}</p>
+        </div>
+
+        <div>
+            <p> {{object.content}} </p>
+        </div>
+    </div>
+    
+</div>
+
+{%endblock%}

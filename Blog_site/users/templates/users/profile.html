@@ -1,0 +1,55 @@
+﻿{%extends 'blog/base.html'%}
+{% load crispy_forms_tags %}
+
+{% block content%}
+<div class="post-head container">
+    <img src="{{user.profile.pic.url}}" alt="profile picture" />
+    <h1>Hey, &nbsp;{{user.username}}</h1>
+
+</div>
+
+<div class="container">
+    <h1>Update Info</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{u_form |crispy}}
+       
+        {{u_pic | crispy}}
+        <br />
+        <button type="submit">Update</button>
+
+    </form>
+
+    <a href="{%url 'post-create'%}">create post</a>
+</div>
+
+<div class="container">
+    {%for post in posts%}
+        {% if post.auth == user %}
+    <div class="post-cont">
+        <div class="post-head">
+            <img src="{{ post.auth.profile.pic.url }}" alt="Alternate Text" />
+            <h1 style="margin:0"> {{ post.title}} </h1>
+
+        </div>
+        <div style="margin-left:85px">
+            <p style="display:inline"> by <p style="color: #9B59B6; display: inline">{{post.auth}}</p> on {{post.date | date:"F d, Y"}}</p>
+        </div>
+
+        <div>
+            <p> {{post.content}} </p>
+        </div>
+        <div>
+            <a href="">Update</a>
+            <a href="">Delete</a>
+        </div>
+    </div>
+        {%endif%}
+    {%endfor%}
+</div>
+
+
+{%endblock%}
+
+

@@ -1,0 +1,47 @@
+﻿
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>AM Blog</title>
+    <link href="{% static 'Blog/styles.css' %}" rel="stylesheet" />
+</head>
+<body>
+    <div class="nav">
+        <nav>
+            <p class="logo">AM Blog</p>
+           
+        </nav>
+        <div>
+            <a class="elm" href="{% url 'blog-home' %}">Home</a>
+            <a class="elm" href="#">About</a>
+            <a class="elm" href="{%url 'profile' %}">My posts</a>
+        </div>
+        <div class="reg">
+            {% if user.is_authenticated%}
+
+                <button onclick="location.href={% url 'logout' %} ">LogOut</button>
+
+            {%else%}
+                <button onclick="location.href={% url 'login' %} ">Login</button>
+                <button onclick="location.href = {% url 'register' %} ">Register</button>
+            {%endif%}
+        </div>
+    </div>
+
+    
+        {% if messages %}
+    <div class="message">
+        {% for message in messages %}
+        {{message}}
+        {%endfor%}
+    </div>
+        {% endif %}
+    
+
+    {%block content%}{%endblock%}
+</body>
+</html>
